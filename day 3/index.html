@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Implementation Tasks</title>
+  <style>
+    /* Task 1: Card Component */
+    .card {
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 300px;
+      margin-bottom: 30px;
+      background: white;
+    }
+
+    /* Task 2: Float vs Flexbox */
+    .float-container {
+      margin-bottom: 30px;
+      overflow: auto;
+    }
+
+    .float-img {
+      float: left;
+      margin: 0 15px 15px 0;
+    }
+
+    .flex-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .flex-img {
+      flex-shrink: 0;
+    }
+
+    /* Task 3: Two-column layout using inline-block */
+    .inline-block-container {
+      font-size: 0;
+      margin-bottom: 30px;
+    }
+
+    .column {
+      display: inline-block;
+      vertical-align: top;
+      width: 48%;
+      font-size: 16px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .left {
+      background-color: #f9f9f9;
+    }
+
+    .right {
+      background-color: #e9e9e9;
+    }
+
+    /* Task 4: Custom Font using @font-face */
+    @font-face {
+      font-family: 'MyCustomFont';
+      src: url('https://fonts.gstatic.com/s/raleway/v22/1Ptug8zYS_SKggPNyCMIT5lu.woff2') format('woff2');
+    }
+
+    .custom-font {
+      font-family: 'MyCustomFont', sans-serif;
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    /* Task 5: CSS-only Tooltip */
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      margin-bottom: 60px;
+    }
+
+    .tooltip::before {
+      content: 'Tooltip text';
+      position: absolute;
+      bottom: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: black;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .tooltip::after {
+      content: '';
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: black;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .tooltip:hover::before,
+    .tooltip:hover::after {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body style="font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5;">
+
+  <h2>1. Card Component</h2>
+  <div class="card">
+    <h3>Card Title</h3>
+    <p>This is a simple card component that follows a clean design.</p>
+  </div>
+
+  <h2>2. Float Layout</h2>
+  <div class="float-container">
+    <img src="https://th.bing.com/th/id/OIP.6L7shpwxVAIr279rA0B1JQHaE7?r=0&rs=1&pid=ImgDetMain" class="float-img" alt="Float Image" />
+    <p>This text wraps around the floated image. It's a basic layout using float.</p>
+  </div>
+
+  <h2>2. Flexbox Layout</h2>
+  <div class="flex-container">
+    <img src="https://th.bing.com/th/id/OIP.6L7shpwxVAIr279rA0B1JQHaE7?r=0&rs=1&pid=ImgDetMain" class="flex-img" alt="Flex Image" />
+    <p>This is the same layout but cleaner and more responsive using Flexbox.</p>
+  </div>
+
+  <h2>3. Two-Column Inline-block Layout</h2>
+  <div class="inline-block-container">
+    <div class="column left">Left Column content goes here.</div>
+    <div class="column right">Right Column content goes here.</div>
+  </div>
+
+  <h2>4. Custom Font Example</h2>
+  <p class="custom-font">This text uses a custom font (Raleway from Google Fonts).</p>
+
+  <h2>5. CSS-only Tooltip</h2>
+  <div class="tooltip">Hover me</div>
+
+</body>
+</html>
