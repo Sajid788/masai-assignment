@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTML5 & Responsive Tasks</title>
+  <style>
+    /* Task 5: Skip to Content */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: #000;
+      color: #fff;
+      padding: 8px 16px;
+      z-index: 100;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* Task 1: Responsive Navbar */
+    nav {
+      background: #333;
+      color: white;
+      padding: 1rem;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: white;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #444;
+        margin-top: 1rem;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* Blog layout */
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    article {
+      flex: 3;
+    }
+
+    aside {
+      flex: 1;
+      background: #f4f4f4;
+      padding: 1rem;
+    }
+
+    figure {
+      margin: 1rem 0;
+    }
+
+    figcaption {
+      font-style: italic;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    video {
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    picture img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Task 5: Skip to Content -->
+  <a href="#main-content" class="skip-link">Skip to Content</a>
+
+  <!-- Task 1: Responsive Navbar -->
+  <nav>
+    <div class="nav-container">
+      <div>MySite</div>
+      <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+        <div></div><div></div><div></div>
+      </div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Blog</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- Task 2: Blog Article Layout -->
+    <article>
+      <h1>Exploring Modern HTML5 Features</h1>
+
+      <section>
+        <p>HTML5 introduces many semantic elements that make your content more structured and accessible.</p>
+        <figure>
+          <img src="" alt="HTML5 Banner" />
+          <figcaption>An example of a modern HTML5 banner image.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Task 3: Video with Captions -->
+      <section>
+        <h2>Watch This Demo</h2>
+        <video controls>
+          <source src="sample-video.mp4" type="video/mp4" />
+          <track src="captions.vtt" kind="subtitles" srclang="en" label="English" default />
+          Your browser does not support the video tag.
+        </video>
+      </section>
+
+      <!-- Task 4: Responsive Images -->
+      <section>
+        <h2>Responsive Image Example</h2>
+        <picture>
+          <source srcset="https://via.placeholder.com/600x300" media="(max-width: 768px)" />
+          <source srcset="https://via.placeholder.com/1200x600" media="(min-width: 769px)" />
+          <img src="https://via.placeholder.com/1200x600" alt="Responsive sample image" />
+        </picture>
+      </section>
+    </article>
+
+    <!-- Sidebar -->
+    <aside>
+      <h3>Related Posts</h3>
+      <ul>
+        <li><a href="#">Intro to Semantic HTML</a></li>
+        <li><a href="#">Responsive Web Design Tips</a></li>
+        <li><a href="#">Accessibility Best Practices</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <script>
+    // Simple JS to toggle nav on mobile (used in Task 1)
+    document.querySelector('.hamburger').addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.toggle('show');
+    });
+  </script>
+
+</body>
+</html>
