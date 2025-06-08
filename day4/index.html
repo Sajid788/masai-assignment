@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CSS Tasks Demo</title>
+  <style>
+    /* -------------- Task 2: Light/Dark Theme Switcher with prefers-color-scheme -------------- */
+    :root {
+      --primary-bg: #ffffff;
+      --secondary-bg: #f0f0f0;
+      --text-color: #000000;
+      --button-bg: #007bff;
+      --button-hover: #0056b3;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary-bg: #1e1e1e;
+        --secondary-bg: #2c2c2c;
+        --text-color: #ffffff;
+        --button-bg: #4e8ef7;
+        --button-hover: #3572d1;
+      }
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+    }
+
+    /* -------------- Task 1: 12-Column Grid System with Named Grid Areas -------------- */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-areas:
+        "header header header header header header header header header header header header"
+        "sidebar sidebar content content content content content content content content content content"
+        "footer footer footer footer footer footer footer footer footer footer footer footer";
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .header    { grid-area: header; background: var(--secondary-bg); padding: 1rem; }
+    .sidebar   { grid-area: sidebar; background: var(--secondary-bg); padding: 1rem; }
+    .content   { grid-area: content; background: var(--secondary-bg); padding: 1rem; }
+    .footer    { grid-area: footer; background: var(--secondary-bg); padding: 1rem; }
+
+    /* -------------- Task 4: Responsive Layout @ 3 Breakpoints -------------- */
+    @media (max-width: 1024px) {
+      .grid-container {
+        grid-template-areas:
+          "header header header header header header header header header header header header"
+          "sidebar sidebar sidebar sidebar sidebar sidebar content content content content content content"
+          "footer footer footer footer footer footer footer footer footer footer footer footer";
+      }
+    }
+
+    @media (max-width: 768px) {
+      .grid-container {
+        grid-template-areas:
+          "header header header header header header header header header header header header"
+          "content content content content content content content content content content content content"
+          "sidebar sidebar sidebar sidebar sidebar sidebar sidebar sidebar sidebar sidebar sidebar sidebar"
+          "footer footer footer footer footer footer footer footer footer footer footer footer";
+      }
+    }
+
+    @media (max-width: 480px) {
+      .grid-container {
+        grid-template-areas:
+          "header"
+          "content"
+          "sidebar"
+          "footer";
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* -------------- Task 3: Scrollable Image Carousel with Scroll Snap -------------- */
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .carousel img {
+      scroll-snap-align: start;
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    /* -------------- Task 5: Button Hover Animation -------------- */
+    .animated-button {
+      background: var(--button-bg);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .animated-button:hover {
+      background: var(--button-hover);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grid-container">
+    <div class="header"><h1>Header</h1></div>
+    <div class="sidebar"><p>Sidebar Content</p></div>
+    <div class="content">
+      <h2>Main Content Area</h2>
+
+      <!-- Task 3: Image Carousel -->
+      <div class="carousel">
+        <img src="https://th.bing.com/th/id/OIP.j4KdqaXpnhbN94WzVyHUhAHaE8?r=0&rs=1&pid=ImgDetMain" alt="1" />
+        <img src="https://th.bing.com/th/id/OIP.j4KdqaXpnhbN94WzVyHUhAHaE8?r=0&rs=1&pid=ImgDetMain" alt="2" />
+        <img src="https://th.bing.com/th/id/OIP.j4KdqaXpnhbN94WzVyHUhAHaE8?r=0&rs=1&pid=ImgDetMain" alt="3" />
+        <img src="https://th.bing.com/th/id/OIP.j4KdqaXpnhbN94WzVyHUhAHaE8?r=0&rs=1&pid=ImgDetMain" alt="4" />
+      </div>
+
+      <!-- Task 5: Animated Button -->
+      <button class="animated-button">Hover Me</button>
+    </div>
+    <div class="footer"><p>Footer Section</p></div>
+  </div>
+
+</body>
+</html>
