@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Task Implementation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .even {
+      background-color: #f0f0f0;
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      background: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+      display: none;
+    }
+
+    .tab-content {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>1. Debounce Live Search</h2>
+  <input id="search" placeholder="Type to search..." />
+  <div id="result"></div>
+
+  <hr>
+
+  <h2>2. Tab Switcher</h2>
+  <div class="tabs">
+    <button class="tab" data-tab="1">Tab 1</button>
+    <button class="tab" data-tab="2">Tab 2</button>
+  </div>
+  <div id="tab-1" class="tab-content active">Content for Tab 1</div>
+  <div id="tab-2" class="tab-content">Content for Tab 2</div>
+
+  <hr>
+
+  <h2>3. Highlight Even List Items</h2>
+  <ul id="item-list">
+    <li>Item 0</li>
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+  </ul>
+
+  <hr>
+
+  <h2>4. Back to Top Button</h2>
+  <p style="height: 1000px;">Scroll down to see the button...</p>
+  <button id="backToTop">⬆ Back to Top</button>
+
+  <hr>
+
+  <h2>5. ES Module Utility (add + capitalize)</h2>
+  <div id="moduleOutput"></div>
+
+  <script type="module">
+    // Task 5: Utility functions in the same module block
+    function add(a, b) {
+      return a + b;
+    }
+
+    function capitalize(str) {
+      return str[0].toUpperCase() + str.slice(1);
+    }
+
+    const output = document.getElementById('moduleOutput');
+    output.innerHTML = `
+      add(5, 7) = ${add(5, 7)}<br>
+      capitalize("world") = ${capitalize("world")}
+    `;
+  </script>
+
+  <script>
+    //Task 1: Debounce and live search
+    function debounce(func, delay) {
+      let timeout;
+      return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), delay);
+      };
+    }
+
+    const input = document.getElementById('search');
+    const result = document.getElementById('result');
+
+    function liveSearch(e) {
+      result.textContent = `Searching for: ${e.target.value}`;
+    }
+
+    input.addEventListener('keyup', debounce(liveSearch, 300));
+
+    //Task 2: Tab switcher
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabId = tab.dataset.tab;
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.getElementById(`tab-${tabId}`).classList.add('active');
+      });
+    });
+
+    //Task 3: Highlight even-indexed items
+    document.querySelectorAll('#item-list li').forEach((li, index) => {
+      if (index % 2 === 0) {
+        li.classList.add('even');
+      }
+    });
+
+    //Task 4: Back to Top Button
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) {
+        backToTop.style.display = 'block';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
